@@ -14,7 +14,7 @@ app.get(`/`, (req, res) => {
 })
 
 app.get("/productos/:id", async (req, res) => {
-    const product = await producto.getElementById(parseInt(req.params.id));
+    const product = await producto.getProductById(parseInt(req.params.id));
     if (product) {
         res.send(product);
     } else {
@@ -23,14 +23,15 @@ app.get("/productos/:id", async (req, res) => {
 })
 
 app.get("/productos", async (req, res) => {
-    const { categoria } = req.query
+    const { limit } = req.query
     const product = await producto.getProducts()
-    if (categoria) {
+    if (limit) {
         res.send(product.slice(0, limit))
     } else {
         res.send(product);
     }
 })
+
 
 app.get(`*`,(req, res) => {
     res.send("Error 404")

@@ -45,6 +45,7 @@ export class ProductManager {
 
             if (product) {
                 console.log(product);
+                return product
             } else {
                 console.log(`No existe ningún producto con el ID: ${id}`);
             }
